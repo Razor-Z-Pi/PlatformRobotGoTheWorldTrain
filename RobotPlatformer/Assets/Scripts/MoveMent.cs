@@ -7,7 +7,9 @@ using UnityEngine;
 public class MoveMent : MonoBehaviour
 {
     public float speed;
-    private Rigidbody2D _rigidbody2D;
+    public Rigidbody2D _rigidbody2D;
+    public float jumpForce;
+
 
     private void Start()
     {
@@ -27,8 +29,17 @@ public class MoveMent : MonoBehaviour
         }
     }
 
+    private void JumpUp() 
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            _rigidbody2D.AddForce(Vector2.up * (jumpForce * Time.deltaTime), ForceMode2D.Impulse);
+        }
+    }
+    
     private void Update()
     {
         walk();
+        JumpUp();
     }
 }
